@@ -316,7 +316,7 @@ func HotelsDb(ctx *gin.Context) {
 
 	q := ctx.Request.URL.Query()
 
-	if len(q.Get("iata")) == 0 {
+	if len(q.Get("cityId")) == 0 {
 		return
 	}
 
@@ -327,7 +327,7 @@ func HotelsDb(ctx *gin.Context) {
 	currency := q.Get("currency")
 	nights, _ := strconv.Atoi(q.Get("nights"))
 
-	cur, err := databases.MongoClient().Find(databases.Ctx, bson.M{"iata": q.Get("iata"), "lang": q.Get("lang")}, options)
+	cur, err := databases.MongoClient().Find(databases.Ctx, bson.M{"cityid": q.Get("cityId"), "lang": q.Get("lang")}, options)
 	if err != nil {
 		log.Printf(err.Error())
 	}
